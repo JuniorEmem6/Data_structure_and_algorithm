@@ -9,17 +9,20 @@ func main() {
 	joinClass("Kunle", adjList)
 	joinClass("Esther", adjList)
 	joinClass("Amaka", adjList)
+	joinClass("Bayo", adjList)
 
-	makeFriend("Kunle", "Esther", adjList)
+	BreadthFirstSearch("Bayo", adjList)
 
-	joinClass("Ahmed", adjList)
-	makeFriend("Esther", "Bayo", adjList)
+	// makeFriend("Kunle", "Esther", adjList)
 
-	makeFriend("Bayo", "Kunle", adjList)
+	// joinClass("Ahmed", adjList)
+	// makeFriend("Esther", "Bayo", adjList)
 
-	makeFriend("Amaka", "Ahmed", adjList)
+	// makeFriend("Bayo", "Kunle", adjList)
 
-	unFriend("Kunle", "Esther", adjList)
+	// makeFriend("Amaka", "Ahmed", adjList)
+
+	// unFriend("Kunle", "Esther", adjList)
 
 }
 
@@ -30,9 +33,12 @@ func joinClass(user string, class map[string][]string) {
 
 	if !ok {
 		class[user] = friends
+		fmt.Printf("%s just joined the class and have no friends yet\n", user)
+		return
+
 	}
 
-	fmt.Printf("%s just joined the class and have no friends yet\n", user)
+	fmt.Printf("%s already a student\n", user)
 }
 
 func makeFriend(user1 string, user2 string, class map[string][]string) {
@@ -75,5 +81,26 @@ func unFriend(user1 string, user2 string, class map[string][]string) {
 	}
 
 	fmt.Println(class)
+
+}
+
+func BreadthFirstSearch(start string, class map[string][]string) {
+	var queue []string
+	visited := make(map[string]bool)
+	var student []string
+
+	queue = append(queue, start)
+	visited[start] = true
+
+	var node string = queue[0]
+	edges, ok := class[node]
+
+	if ok && visited[node] != true {
+		queue = append(queue, edges...)
+		student = append(student, node)
+		visited[node] = true
+	}
+
+	fmt.Println(student)
 
 }
