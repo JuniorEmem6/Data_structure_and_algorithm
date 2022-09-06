@@ -13,7 +13,7 @@ func main() {
 		"Swift",
 	}
 
-	var result string = recursiveBinarySearch(lang, "C", 0, len(lang)-1)
+	var result string = recursiveBinarySearch(lang, "CA", 0, len(lang)-1)
 	fmt.Println(result)
 }
 
@@ -24,6 +24,7 @@ func recursiveBinarySearch(lang []string, value string, min int, max int) string
 		fmt.Println(max, min, mid)
 
 		if lang[mid] == value {
+			// fmt.Println("Found")
 			return fmt.Sprintf("%s found at index %v", value, mid)
 		} else if lang[mid] > value {
 			recursiveBinarySearch(lang, value, 0, mid-1)
