@@ -27,7 +27,7 @@ int majorityElement(int array[], int size)
 
 int main(void)
 {
-    int number[9] = {3, 3, 4, 2, 4, 4, 2, 1, 4};
+    int number[9] = {4, 3, 4, 2, 4, 4, 2, 1, 4};
     int size = sizeof(number) / sizeof(number[0]);
 
     int result = majorityElement(number, size);

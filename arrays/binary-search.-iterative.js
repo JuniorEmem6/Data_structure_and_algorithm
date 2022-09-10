@@ -9,7 +9,6 @@ const lang = [
 ];
 //Function to implement iterative bineary search
 function binarySearch(lang, choice) {
-  console.log(lang);
   let min = 0;
   let max = lang.length - 1;
 
