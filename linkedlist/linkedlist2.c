@@ -16,6 +16,7 @@ int length();
 void insertTail(char *name, int id);
 void deleteHead();
 void deleteTail();
+void insertAt(char *name, int id, int key);
 
 int main(void)
 {
@@ -27,6 +28,7 @@ int main(void)
     insertHead("Bayo", 90);
     deleteHead();
     deleteTail();
+    insertAt("Enoobong", 33, 3);
 
     // printf("Your name is %s, id is %d and next is : %s\n", head->name, head->id, head->next->name);
     printElement();
@@ -77,14 +79,7 @@ void insertTail(char *name, int id)
 
     if (head == NULL)
     {
-        struct person *link = (struct person *)malloc(sizeof(struct person));
-
-        link->id = id;
-        link->name = name;
-
-        link->next = head;
-
-        head = link;
+        insertHead(name, id);
     }
     else
     {
@@ -126,6 +121,37 @@ void deleteTail()
         previous = current;
         current = current->next;
     }
-    
+
     previous->next = NULL;
+}
+
+void insertAt(char *name, int id, int key)
+{
+    if (key == 0)
+    {
+        insertHead(name, id);
+    }
+    else
+    {
+        int count = 0;
+        struct person *current = head;
+        struct person *previous = (struct person *)malloc(sizeof(struct person));
+        struct person *link = (struct person *)malloc(sizeof(struct person));
+
+        link->name = name;
+        link->id = id;
+        link->next = NULL;
+
+        while (count < key)
+        {
+            count++;
+            previous = current;
+            current = current->next;
+        }
+
+        previous->next = link;
+        link->next = current;
+
+        
+    }
 }
