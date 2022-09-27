@@ -17,6 +17,7 @@ void insertTail(char *name, int id);
 void deleteHead();
 void deleteTail();
 void insertAt(char *name, int id, int key);
+void removeAt(int key);
 
 int main(void)
 {
@@ -29,12 +30,15 @@ int main(void)
     deleteHead();
     deleteTail();
     insertAt("Enoobong", 33, 3);
+    removeAt(0);
 
     // printf("Your name is %s, id is %d and next is : %s\n", head->name, head->id, head->next->name);
     printElement();
+
     int result = length();
 
     printf("Total number of person is: %d\n", result);
+
 }
 
 void insertHead(char *name, int id)
@@ -152,6 +156,31 @@ void insertAt(char *name, int id, int key)
         previous->next = link;
         link->next = current;
 
-        
+        // free(previous);
+        // free(link);
+    }
+}
+
+void removeAt(int key)
+{
+    if (key == 0)
+    {
+        deleteHead();
+    }
+    else
+    {
+        int count = 0;
+        struct person *current = head;
+        struct person *previous = (struct person *)malloc(sizeof(struct person));
+
+        while (count < key)
+        {
+            previous = current;
+            count++;
+            current = current->next;
+        }
+
+        previous->next = current->next;
+
     }
 }
